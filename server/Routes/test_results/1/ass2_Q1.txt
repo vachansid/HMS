@@ -1,0 +1,109 @@
+    .globl main
+    
+.data
+
+newline:
+        .asciiz "\n"
+first:
+        .asciiz "Enter first number: "
+second:
+        .asciiz "Enter second number: "
+final:
+        .asciiz "Product of the two numbers are: "
+Max:
+        .half 32767
+Min:
+        .half -32768
+
+    .text
+
+    main:
+
+prompt:
+        li $v0, 4               #printing enter first integer
+        la $a0, first
+        syscall
+
+        li $v0, 5               #getting multiplicand from user
+        syscall
+
+        blt v0, Min, prompt     #sanity checking for 16 bits(min value)
+        move $s0, $v0
+
+        li $v0, 4               #printing enter second integer   
+        la $a0, second
+        syscall
+
+        li $v0, 5               #getting multiplier from user
+        syscall
+
+        bgt v0, Max, prompt     #sanity checking for 16 bits(max value) 
+        move $s1, $v0
+
+        move $a0, $s0           #moving both multiplicand and multiplier to a0, a1 as arguments
+        move $a1, $s1
+
+        jal  multiply_booth     #function call for multiplication using booths multiplication algorithm
+
+        move $s2, $v0           #storing the return value in s2
+
+        li  $v0, 4              #printing the final output message
+        la  $a0, final
+        syscall
+
+        li  $v0, 1              #printing the product value
+        move  $a0, $s2
+        syscall
+
+        li  $v0, 10             #terminating the program
+        syscall
+
+
+#booths algorithm procedure
+#M(Multiplicand): a0
+#Q(Multiplier): a1
+#A: s0
+#Q0 : s1
+#Q-1: s2
+#count : s3
+
+multiply_booth:
+        
+        li $s0, 0               #initialize A->0
+        li $s2, 0               #initialize Q-1->0
+        li $s3, 32              #initialize count->32
+
+solve:
+        andi  $s1, $a1, 1       #taking last bit of miltiplier as Q0
+        xor   $s4, $s1, $s2     #searching for exactly one of s1 and s2 is 1
+        bne   $s4, 0, check     #if xor(s4) is 0 continue else check for 01 and 10 cases
+
+rightshift:                     #arithmetic shift right: A,Q,Q-1
+        move  $s2, $s1          #Q0 --> Q-1
+        srl   $a1, $a1, 1       #logically right shift Q by 1 bit
+        andi  $s1, $s0, 1       #taking last bit of A and storing it to s1
+        sll   $s1, $s1, 31
+        or    $a1, $a1, $s1
+        sra   $s0, $s0, 1
+
+        addi  $s3, $s3, -1
+
+        beq   $s3, 0, fun_exit
+
+        j solve
+
+check:
+        bne  $s1, 0, check_10   #if Q0 = 1 then go to check_10
+        bne  $s2, 0, check_01   #if Q-1 = 1 then go to check_01
+
+check_10:
+        sub  $s0, $s0, $a0      #if Q0Q-1 = 10 then A = A-M
+        j rightshift
+
+check_01:
+        add  $s0, $s0, $a0      #if Q0Q-1 = 01 then A = A+Max
+        j rightshift
+
+fun_exit:
+        move   $v0, $a1
+        jr     $ra

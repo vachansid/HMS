@@ -1,0 +1,236 @@
+/* body {
+    background-image: url("../img/104.png");
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+  } */
+
+
+
+
+  
+  .save-button, .update-button {
+    background-color:  rgb(60, 134, 155);; /* Green background color */
+    border: none; /* No border */
+    color: white; /* White text */
+    padding: 10px 20px; /* Padding */
+    text-align: center; /* Centered text */
+    text-decoration: none; /* No underline */
+    display: inline-block; /* Display as inline-block */
+    font-size: 16px; /* Font size */
+    margin: 10px; /* Margin */
+    border-radius: 5px; /* Rounded corners */
+    box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.3); /* Shadow */
+    transition: background-color 0.3s ease; /* Transition for background color */
+  }
+  
+  .save-button:hover, .update-button:hover {
+    background-color: rgb(121, 211, 197); /* Darker green background color when hovered */
+  }
+
+  .outer-box {
+
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 50px;
+    background-color: #f2f2f2;
+    opacity: 93%;
+    border-radius: 20px;
+    text-align: center;
+  }
+  
+  h2 {
+    margin-bottom: 30px;
+    font-size: 2rem;
+    color: black;
+  }
+  
+  label {
+    display: block;
+    margin-bottom: 20px;
+    text-align: left;
+    font-size: 1.2rem;
+    color: #666;
+  }
+  
+  input,
+  select {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    margin-top: 5px;
+    margin-bottom: 20px;
+    font-size: 1.2rem;
+    color: #333;
+  }
+  
+  .primary-btn {
+    background-color: #0a7bb3;
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-right: 10px;
+    font-size: 1.2rem;
+  }
+  
+  .secondary-btn {
+    background-color: #ddd;
+    color: #333;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-right: 10px;
+    font-size: 1.2rem;
+  }
+  
+  .doodles {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+  }
+  
+  .doodles img {
+    margin: 10px;
+    border-radius: 50%;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+  }
+  
+  /* Fixed sidenav, full height */
+  .sidenav {
+      height: 100%;
+      width: 250px;
+      position: fixed;
+      z-index: 1;
+      top: 0;
+      left: 0;
+      background-color: #f1f1f1;
+      overflow-x: hidden;
+      padding-top: 20px;
+    }
+    
+    /* Style the sidenav links and the dropdown button */
+    .sidenav a, .dropdown-btn {
+      padding: 6px 8px 6px 16px;
+      text-decoration: none;
+      font-size: 20px;
+      color: #818181;
+      display: block;
+      border: none;
+      background: none;
+      width:100%;
+      text-align: left;
+      cursor: pointer;
+      outline: none;
+    }
+    
+    /* On mouse-over */
+    .sidenav a:hover, .dropdown-btn:hover {
+      color: #111;
+    }
+    
+    /* Main content */
+    .main {
+      margin-left: 200px; /* Same as the width of the sidenav */
+      font-size: 20px; /* Increased text to enable scrolling */
+      padding: 0px 10px;
+    }
+    
+    /* Add an active class to the active dropdown button */
+    .active {
+      background-color: rgb(173, 11, 191);
+      color: white;
+    }
+    
+    /* Dropdown container (hidden by default). Optional: add a lighter background color and some left padding to change the design of the dropdown content */
+    .dropdown-container {
+      display: none;
+      background-color: #262626;
+      padding-left: 8px;
+    }
+    
+    /* Optional: Style the caret down icon */
+    .fa-caret-down {
+      float: right;
+      padding-right: 8px;
+    }
+  
+    .my-component {
+      background-color: black;
+      color: rgb(56, 245, 56);
+      padding: 20px;
+    }
+    
+    .welcome-message {
+      color: rgb(56, 245, 56);
+    }
+    
+    
+    
+    .patients-table {
+      border-collapse: collapse;
+      margin-top: 20px;
+    }
+    
+    .patients-table th,
+    .patients-table td {
+      border: 1px solid rgb(56, 245, 56);
+      padding: 10px;
+      text-align: center;
+    }
+    
+    .patients-table th {
+      background-color: rgb(56, 245, 56);
+      color: black;
+    }
+    
+    .patient-count {
+      color: rgb(56, 245, 56);
+      padding: 1px;
+      border-radius: 5px;
+      margin-top: 20px;
+      text-align: center;
+    }
+    
+    tr{
+      /* #45261a */
+      border-color: #053348;
+      color:black;
+      background-color:  #bad9e5;
+      font-size: 18px;
+      height: 60px;
+    }
+    tr:not(:nth-child(1)):hover{
+      background-color: #053348;
+     transform: scale(1.01);
+     font-size: 18px;
+     color: white;  
+    }
+    tr:nth-child(1)
+    {
+      background-color: #053348;
+     font-size: 18px;
+     color: white;
+    }
+   
+    button {
+      background-color: rgb(60, 134, 155);
+      color: black;
+      border: none;
+      padding: 5px 10px;
+      border-radius: 5px;
+      margin-right: 10px;
+      margin-left: 20px;
+      margin-top: 5px; 
+    }
+    
+    button:hover {
+      background-color: rgb(121, 211, 197);
+      cursor: pointer;
+      transform: scale(1.1);
+    }
